@@ -1,1 +1,1 @@
-web: gunicorn gtcourseinfo.wsgi --log-file -
+web: gunicorn gtcourseinfoproject.wsgi --log-file -
