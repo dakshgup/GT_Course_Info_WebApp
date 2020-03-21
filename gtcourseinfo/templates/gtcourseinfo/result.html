@@ -7,7 +7,9 @@
     <style>
     body {
         background-color: linen;
-        padding: 15%
+        padding-left: 8%;
+        padding-right: 8%;
+        padding-top: 5%;
     }
     h1 {
         font-family: sans-serif;
@@ -18,11 +20,19 @@
     p {
         font-family: sans-serif;
     }
+    th {
+        font-family: sans-serif;
+        text-align: left;
+    }
     pre {
         font-family: sans-serif;
         font-size: medium;
         line-height: 1.5;
     }
+    table {
+        background-color: #e9d1b3;
+    }
+
     </style>
 
 </head>
@@ -30,9 +40,20 @@
     <h1>Welcome to GT Course Info</h1>
     <h4>by Daksh Gupta</h4>
     <p>GT Course Info returns the RateMyProfessor Ratings of all the professors who teach the class you enter.</h3>
-    <p>Here is the info about the class you entered: </p>
+    <p>Here is the info about <b>{{course}} </b>:</p>
+    <br>
+    <p><i>Overall Average GPA: {{gpa}}</i></p>
+        <table>
+            <tr>
+                <th>Instructor Name</th>
+                <th>Rating</th>
+            </tr>
+            <tr>
+                <td><pre>{{profs}}</pre></td>
+                <td><pre>{{ratings}}</pre></td>
+            </tr>
+        </table>
 
-        <pre>{{result}}</pre>
     <br>
     <br>
 

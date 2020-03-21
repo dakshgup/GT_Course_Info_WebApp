@@ -106,7 +106,7 @@ def getInfoPro(course_code):
 
     gt = RateMyProfScraper(361)
 
-    out = {5: ("Average GPA: " + gpa + "\n\n" + "RateMyProfessor.com Ratings: \n\n")}
+    out = {}
     
     for index in range(len(profs)):
         l = gt.SearchProfessor(nameFixer(profs[index]))
@@ -122,15 +122,20 @@ def getInfoPro(course_code):
     finalOut = {}
     for key in keys:
         finalOut[key] = out[key]
-    
+    """  
     textOut = ""
     for i in finalOut.keys():
         textOut += finalOut[i] + "\n"
     """
-    tupleOut += 
-    for item in finalOut:
-        """
-    return (textOut)
+    links = ""
+    for i in finalOut.keys():
+        links += "https://www.ratemyprofessors.com/search.jsp?queryoption=HEADER&query=" + finalOut[key][0:-4].replace(" ", "+") + "&facetSearch=true"
+    listOut = ["", "", gpa, course_code]
+    for item in finalOut.items():
+        listOut[0] += item[1][0:-3]  + "\n"
+        listOut[1] += str(item[0]) + "\n"
+    
+    return (listOut)
 
 
 
@@ -144,4 +149,9 @@ def form(request):
 def result(request):
     coursename = request.GET["coursename"]
     res = getInfoPro(coursename)
-    return render(request, "gtcourseinfo/result.html", {"result": res})
+    profs = res[0]
+    ratings = res[1]
+    gpa = res[2]
+    course = res[3]
+    
+    return render(request, "gtcourseinfo/result.html", {"profs": profs, "ratings": ratings, "gpa": gpa, "course": course})
