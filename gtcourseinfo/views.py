@@ -126,7 +126,11 @@ def getInfoPro(course_code):
     textOut = ""
     for i in finalOut.keys():
         textOut += finalOut[i] + "\n"
-    return (tupleOut)
+    """
+    tupleOut += 
+    for item in finalOut:
+        """
+    return (textOut)
 
 
 
