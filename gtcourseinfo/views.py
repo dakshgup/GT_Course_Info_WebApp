@@ -106,15 +106,27 @@ def getInfoPro(course_code):
 
     gt = RateMyProfScraper(361)
 
-    out = "Average GPA: " + gpa + "\n\n" + "RateMyProfessor.com Ratings: \n\n"
+    out = {5: ("Average GPA: " + gpa + "\n\n" + "RateMyProfessor.com Ratings: \n\n")}
+    
     for index in range(len(profs)):
         l = gt.SearchProfessor(nameFixer(profs[index]))
         if l != False:
 
-            out += (gt.professorlist[l]['tFname']   + " "  +   gt.professorlist[l]['tLname']   + ": " +   gt.professorlist[l]['overall_rating'] + "\n")
+            #out += (gt.professorlist[l]['tFname']   + " "  +   gt.professorlist[l]['tLname']   + ": " +   gt.professorlist[l]['overall_rating'] + "\n")
+            out[float(gt.professorlist[l]['overall_rating'])] = gt.professorlist[l]['tFname']   + " "  +   gt.professorlist[l]['tLname']   + ": " +   gt.professorlist[l]['overall_rating']
         #else:
             #print(profs[index] + ": " + "No rating found")
-    return (out)
+    
+    keys = list(out.keys())
+    keys.sort(reverse=True)
+    finalOut = {}
+    for key in keys:
+        finalOut[key] = out[key]
+    
+    textOut = ""
+    for i in finalOut.keys():
+        textOut += finalOut[i] + "\n"
+    return (tupleOut)
 
 
 
@@ -128,4 +140,4 @@ def form(request):
 def result(request):
     coursename = request.GET["coursename"]
     res = getInfoPro(coursename)
-    return render(request, "gtcourseinfo/result.html", {'result':res})
+    return render(request, "gtcourseinfo/result.html", {"result": res})
