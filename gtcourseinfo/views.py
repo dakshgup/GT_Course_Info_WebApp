@@ -112,7 +112,7 @@ def getInfoPro(course_code):
         l = gt.SearchProfessor(nameFixer(profs[index]))
         if l != False:
             if gt.professorlist[l]['overall_rating'] == "N/A":
-                gt.professorlist[l]['overall_rating'] = 0.0
+                gt.professorlist[l]['overall_rating'] = "0.0"
             #out += (gt.professorlist[l]['tFname']   + " "  +   gt.professorlist[l]['tLname']   + ": " +   gt.professorlist[l]['overall_rating'] + "\n")
             out[float(gt.professorlist[l]['overall_rating'])] = gt.professorlist[l]['tFname']   + " "  +   gt.professorlist[l]['tLname']   + ": " +   gt.professorlist[l]['overall_rating']
         #else:
