@@ -154,5 +154,6 @@ def result(request):
     ratings = res[1]
     gpa = res[2]
     course = res[3]
+    link = "https://critique.gatech.edu/course.php?id=" + course
     
-    return render(request, "gtcourseinfo/result.html", {"profs": profs, "ratings": ratings, "gpa": gpa, "course": course})
+    return render(request, "gtcourseinfo/result.html", {"profs": profs, "ratings": ratings, "gpa": gpa, "course": course, "link": link})
