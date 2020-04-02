@@ -10,6 +10,11 @@
   <li>Scrapes RateMyProfessor to get the ratings of each instructor </li>
  </ol>
 
+<h4>Landing Page</h4>
+<img href="https://imgur.com/aC47Dqt">
+<br>
+<h4>Results Page</h4>
+<img href="https://imgur.com/a/MNDL8J">
 
 
 CREDITS/LICENSES:
