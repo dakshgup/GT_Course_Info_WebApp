@@ -11,10 +11,12 @@
  </ol>
 
 <h4>Landing Page</h4>
-<img href="https://imgur.com/aC47Dqt">
+
+<a href="https://imgur.com/uDOzJY1"><img src="https://i.imgur.com/uDOzJY1.png" title="source: imgur.com" /></a>
+
 <br>
 <h4>Results Page</h4>
-<img href="https://imgur.com/a/MNDL8J">
+<a href="https://imgur.com/aC47Dqt"><img src="https://i.imgur.com/aC47Dqt.png" title="source: imgur.com" /></a>
 
 
 CREDITS/LICENSES:
