@@ -4,6 +4,9 @@ from bs4 import BeautifulSoup
 import requests
 import math
 import pickle
+import json
+import urllib.request
+# import RateMyProfessorPyAPI
 
 
 class RateMyProfScraper:
@@ -72,6 +75,15 @@ def nameFixer(inp):
         return (inp)
     return name
 
+"""
+['', '', 3.0, 'CS1301', 'CS 1301 - Intro to Computing', '\nIntroduction to computing principles and programming practices with an emphasis on the design, construction and 
+implementation of problem solutions use of software tools.\n', 'https://oscar.gatech.edu/pls/bprod/bwckctlg.p_disp_course_detail?cat_term_in=202008&subj_code_in=CS&crse_numb_in=1301']
+"""
+
+#def getInfoPro(course_code):
+#   output = ["", ""]
+
+
 
 def getInfoPro(course_code):
     #print("check")
@@ -79,15 +91,22 @@ def getInfoPro(course_code):
     course_code = course_code.replace(" ", "")
     course_code = course_code.upper()
         
+    dep = ""
+    num = ""
+    for i in course_code:
+        if i.isalpha():
+            dep += i
+        else:
+            num += i
+
     
-
-    url = "https://critique.gatech.edu/course.php?id="
-    doc = requests.get(url + course_code)
-    page = BeautifulSoup(doc.content, "html.parser")
-
-    gpa = page.body.div.div.div.table.tbody.tr.find_all('td')[1].text
-
-    profs_list_temp = page.find_all("a")
+    r_course = dep + "+" + num
+    url = "https://c4citk6s9k.execute-api.us-east-1.amazonaws.com/test/data/course?courseID=" + r_course
+    with urllib.request.urlopen(url) as jsonStream:
+        jsonParsed = json.loads(jsonStream.read().decode())
+        gpa = jsonParsed["header"][0]["avg_gpa"]
+        if (gpa is None):
+            gpa = 0
     profs = []
     for i in range(1, 30):
         try:
@@ -165,10 +184,7 @@ def getInfoPro(course_code):
 
     return (listOut)
 
-
-
-
-
+print(getInfoPro("CS1301"))
 # Create your views here.
 
 def form(request):
